@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Paul Miller
+Visual Frameworks - 1208
+Project 1 - 08/01/2012
+-->
+<html>
+<head>
+<!-- META DETA. -->
+<meta charset="utf-8" />
+<meta name=description content="Heritage Tree" />
+<meta name=keywords content="family history,realtives,heritage,Visual Frameworks,Full Sail University" />
+<meta name=robots content="index, follow" />
+<!-- MOBILE PHONE SCALING; AFTERALL, WE ARE USING THE iPHONE SIMULATOR FOR TESTING LATER. -->
+<meta name=viewport content="user-scalable=no, width=device-width" />
+
+<title>Heritage Tree - Your Family, Your Legacy.</title>
+
+</head>
+<body>
+<div id=basic> <form action="#" method="post">
+<fieldset>
+<legend>Relative Information/History</legend>
+<ul id="maininfo">
+<li>
+	<label for="relation">Family Relation:</label>
+	<select id="relation">
+		<optgroup label="Family Relation">
+			<option value="Mother">Mother</option>
+			<option value="Father">Father</option>
+		</optgroup>
+		<optgroup label="Misc. Relation">
+			<option value="Marriage">Spouse</option>
+			<option value="Unknown">Unknown</option>
+		</optgroup>
+	</select>
+</li>
+	<li><label for="fname">First Name:</label><input type="text" id="fname" /></li>
+	<li><label for="mname">Middle Name:</label><input type="text" id="mname" /></li>
+	<li><label for="lname">Last Name:</label><input type="text" id="lname" /></li>
+</ul>
+
+<ul id="story">
+	<li><label for="history">Relative's History:<br /></label><textarea 						id="directions"></textarea></li>
+	<li><label for="rating">Rating:<br /></label></label><input type="range" name="rating" min="1" 				max="10" /></li>
+	<li><label for="dob">Date of Birth:<br /></label><input type="date" name="dob" /></li>	
+	<!-- REQUIRED HIDDEN INPUT TYPE. -->
+	<li><input type="hidden" value="true" /></li>
+	</li>
+</ul>
+	</fieldset>
+</dv>
+
+	<fieldset>
+	<legend>Military History</legend>
+<ul id="honors">
+	<li>Military Honors:
+<ul id="veteran">
+		<li><input type="checkbox" value="rwar" id="rwar" /><label for="rmethod">Revolutionary War</label></li>
+		<li><input type="checkbox" value="ww2" id="cwar" /><label for="cwar">Civil War</label></li>
+		<li><input type="checkbox" value="ww1" id="ww1" /><label for="rmethod">World War I</label></li>
+		<li><input type="checkbox" value="ww2" id="ww2" /><label for="rmethod">World War II</label></li>
+		<li><input type="checkbox" value="vietnam" id="vwar" /><label for="rmethod">Vietnam</label></li>
+</ul>
+	</fieldset>
+<input type="submit" value="Add Relative" id="submit" /><br />
+</form>
+<br /><br />
+<a href="#" id="cleardata">Clear Heritage Tree</a><br />
+<a href="#" id="displaydata">Display Heritage Tree</a><br />
+<!-- PLACED AHEAD OF TIME, LIKE BEFORE. JUST SO I DON'T FORGET TO ADD IT. -->
+<script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
