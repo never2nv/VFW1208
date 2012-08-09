@@ -1,0 +1,86 @@
+/*
+Title: Style.css
+Author: Paul J. Miller
+VFW-1208
+Date: 07/03/2012
+Project 2: Heritage Tree
+*/
+
+body
+{
+	background-color: hsla(800, 50%, 40%, 0.5);
+}
+
+@font-face {
+font-family: 'Orbitron-Light';
+src: url('../fonts/orbitron-light-webfont.ttf') format('truetype'),
+url('../fonts/orbitron-light-webfont.eot') format('eot'),
+url('../fonts/orbitron-light-webfont.woff') format('woff'),
+url('../fonts/orbitron-light-webfont.svg#iefix') format('svg');
+}
+
+
+h1 
+{
+	margin: 6px 12px;
+	padding: 5px;
+	border: 1px solid gold;
+	color: grey;
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color: rgba(255,255,255,0.3);
+	width: 50%;
+	text-align: center;
+	font-weight: bolder;
+	border: 5px double;
+}
+
+h2 
+{
+	color: white;
+	text-align: center;
+	font-family: Times;
+	font-weight: normal;
+}
+
+p
+{
+	color: blue;
+	font-style: ;
+	font-family: Orbitron-Light, Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.5em;
+	text-align: center;
+	text-indent: ;
+	text-transform: ;
+	text-decoration: ;
+}
+
+a
+{
+	outline: 1px dotted black;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: black;
+	outline: none;
+}
+
+form
+{
+	display:inline;
+	padding: 2px;
+	border: 1px solid;
+}
+
+label
+{
+	padding: 1px;
+}
+
+select
+{
+	display:block;
+}
