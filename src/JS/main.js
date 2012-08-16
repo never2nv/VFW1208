@@ -85,6 +85,7 @@ Project 3: Heritage Tree
 		item.history  = ["History:", $('history').value];
 		item.rating   = ["Rating:", $('rating').value];
 		item.dob      = ["Date of Birth:", $('dob').value];
+		item.dod      = ["Date of Death:", $('dod').value];
 		item.honors	= ["Military Honors:", $('honors').value];
 		item.rwar	= ["Revolutionary War:", $('rwar').value];
 		item.cwar	= ["Civil War:", $('cwar').value];
@@ -234,8 +235,8 @@ Project 3: Heritage Tree
 		var getRelation = $('relation'),
 			getFname = $('fname'),
 			getMname = $('mname'),
-		    getLname = $('lname'),
-		    getDob = $('dob');
+		    getLname = $('lname');
+		    // getDob = $('dob');  <= Decided to not make this required as they may not know their DOB/DOD
 		    getRelation.style.border = "1px solid red";
 		    getFname.style.border = "1px solid red";
 		    getMname.style.border = "1px solid red";
@@ -247,7 +248,7 @@ Project 3: Heritage Tree
 		// Get Error Messages
 		var errorArray = [];
 		
-		// Recipe Category/Group Validation
+		// Relation Validation
 		if(getRelation=="--Choose A Family Relation--"){
 			var relationError = "Please choose a family relation!";
 			getRelation.style.border = "1px solid red";
