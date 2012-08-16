@@ -64,7 +64,15 @@ Project 3: Heritage Tree
 	}
 	
 	function storeData(){
+		
+	// If no key then it will generate a brand new key
+	if(!key){
 		var id			= Math.floor(Math.random()*100000001);
+	}else{
+		
+	// Otherwise set id to the pre-existing key that's beeing edited, and can save over the original data
+		id = key;
+	}
 		// Gather up all our form field values and store in an object.
 		// Object properties will contain array with form label and input values.
 		getCheckBoxValue();
@@ -87,8 +95,7 @@ Project 3: Heritage Tree
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Family Member Saved!");	
 	}
-	
-	
+		
 	function getData(){
 	toggleControls("on");
 	if(localStorage.length === 0){
@@ -192,11 +199,22 @@ Project 3: Heritage Tree
 		// Change the initial submit button value to edit
 		$('submit').value = "Edit Relative";
 		var editRelative = $('submit');
-		// Save tracked key of this function as property of editRecipe event. So it saves only values that have been edited.
+		// Save tracked key of this function as a property.
 		editRelative.addEventListener("click", validate);
 		editRelative.key = this.key;
 	}
 	
+	// Delete single item from localStorage
+	function deleteItem(){
+		var confirm = confirm("Are you sure you want to delete this relative? Press cancel to abort deletion.");
+		if(confirm){
+			localStorage.removeItem(this.key);
+			window.location.reload();
+			alert("Relative was deleted successfully!");
+		}else{
+			alert("Deletion of relative has been CANCELED! Relative's data left in-tact!");
+		}
+	}
 	
 	// Clear local storage function
 	function clearStorage(){
@@ -218,9 +236,10 @@ Project 3: Heritage Tree
 			getMname = $('mname'),
 		    getLname = $('lname'),
 		    getDob = $('dob');
-		    getGroup.style.border = "1px solid black";
-		    getRname.style.border = "1px solid black";
-		    getDirections.style.border = "1px solid black";
+		    getRelation.style.border = "1px solid red";
+		    getFname.style.border = "1px solid red";
+		    getMname.style.border = "1px solid red";
+		    getLname.style.border = "1px solid red";
 		    
 		    // Reset error messages
 		    errorMsg.innerHTML = "";
@@ -266,14 +285,13 @@ Project 3: Heritage Tree
 		e.preventDefault();
 		return false;
 		}else{
-			// No errors, then save the data to local storage.
-			storeData(this.key);	// Send key value from editData function, passed through editRecipe even listener as a property.
+			// No errors, then save the relative data to local storage.
+			storeData(this.key);	
+			// The above sends the key value from editData function.
 		}
 	
   }
 
-
-	
 	// Variable defaults
 	var relationCategory = ["--Choose A Family Relation--", "Mother", "Father", "Spouse", "Unknown"],
 		favoriteValue = "No";
