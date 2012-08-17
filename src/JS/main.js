@@ -36,11 +36,12 @@ Project 3: Heritage Tree
 	
 	// Find value of checkbox
 	function getCheckBoxValue(){
-		if($('favorite').checked){
+		var fav = $('favorite').checked;
+		if(fav) {
 			favoriteValue = $('favorite').value;	
 		} else{
 			favoriteValue = "No";
-		}
+		  }
 	}
 	
 	function toggleControls(n){
@@ -48,7 +49,7 @@ Project 3: Heritage Tree
 			case "on":
 				$('mainInfo').style.display = "none";
 				$('clearData').style.display = "inline";
-				$('displayData').style.display = "none";
+				$('displayLink').style.display = "none";
 				$('addNew').style.display = "inline";
 				break;
 			case "off":
@@ -63,16 +64,15 @@ Project 3: Heritage Tree
 		}
 	}
 	
-	function storeData(){
+	function storeData(key){
 		
 	// If no key then it will generate a brand new key
 	if(!key){
 		var id			= Math.floor(Math.random()*100000001);
 	}else{
-		
 	// Otherwise set id to the pre-existing key that's beeing edited, and can save over the original data
 		id = key;
-	}
+	 }
 		// Gather up all our form field values and store in an object.
 		// Object properties will contain array with form label and input values.
 		getCheckBoxValue();
@@ -81,17 +81,17 @@ Project 3: Heritage Tree
 		item.fname    = ["First Name:", $('fname').value];
 		item.mname    = ["Middle Name:", $('mname').value];
 		item.lname    = ["Last Name:", $('lname').value];
-		item.favorite	= ["Mark As Favorite:", $('favorite').value];
+		item.favorite = ["Mark As Favorite:", $('favorite').value];
 		item.history  = ["History:", $('history').value];
 		item.rating   = ["Rating:", $('rating').value];
 		item.dob      = ["Date of Birth:", $('dob').value];
 		item.dod      = ["Date of Death:", $('dod').value];
-		item.honors	= ["Military Honors:", $('honors').value];
-		item.rwar	= ["Revolutionary War:", $('rwar').value];
-		item.cwar	= ["Civil War:", $('cwar').value];
-		item.ww1	= ["World War I:", $('ww1').value];
-		item.ww2	= ["World War II:", $('ww2').value];
-		item.vwar	= ["Vietnam:", $('vwar').value];
+		item.honors	  = ["Military Honors:", $('honors').value];
+		item.rwar	  = ["Revolutionary War:", $('rwar').value];
+		item.cwar	  = ["Civil War:", $('cwar').value];
+		item.ww1	  = ["World War I:", $('ww1').value];
+		item.ww2	  = ["World War II:", $('ww2').value];
+		item.vwar	  = ["Vietnam:", $('vwar').value];
 		// Saving data into local storage Use Stringify to convert object into a string.
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Family Member Saved!");	
@@ -217,6 +217,7 @@ Project 3: Heritage Tree
 		}
 	}
 	
+	
 	// Clear local storage function
 	function clearStorage(){
 		if(localStorage.length === 0){
@@ -289,8 +290,7 @@ Project 3: Heritage Tree
 			// No errors, then save the relative data to local storage.
 			storeData(this.key);	
 			// The above sends the key value from editData function.
-		}
-	
+		 }
   }
 
 	// Variable defaults
@@ -300,8 +300,8 @@ Project 3: Heritage Tree
 	makeCats();
 	
 	// Set link & click events
-	var displayData = $('displayData');
-	displayData.addEventListener("click", getData);
+	var displayLink = $('displayData');
+	displayLink.addEventListener("click", getData);
 	var clearLink = $('clearData');
 	clearLink.addEventListener("click", clearStorage);
 	var save = $('submit');
