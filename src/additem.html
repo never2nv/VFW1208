@@ -18,50 +18,44 @@ Project 1 - 08/01/2012
 <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-<div id=basic> <form action="#" method="post">
+<nav>
+<a href="additem.html" id="addNew" style="display:none;">Add Family Member | </a>
+<a href="#" id="clearData">Clear Heritage Tree | </a>
+<a href="#" id="displayData">Display Heritage Tree</a>
+</nav>
+<form action="#" method="post" id="form">
 <fieldset>
-<legend>Relative Information/History</legend>
+
 <ul id="mainInfo">
-	<li id="select"><label for="relation">*Family Relation:</label><br /></li>
+	<legend>Relative Information/History</legend>
+	<li id="relation"><label for="relation">*Family Relation:</label><br /></li>
 	<li><label for="fname">*First Name:</label><input type="text" id="fname" /></li>
 	<li><label for="mname">*Middle Name:</label><input type="text" id="mname" /></li>
 	<li><label for="lname">*Last Name:</label><input type="text" id="lname" /></li>
-</ul>
 
-<ul id="story">
-	<li><label for="history">Relative's History:<br /></label><textarea id="directions"></textarea></li>
-	<li><label for="rating">Rating:<br /></label></label><input type="range" name="rating" min="1" 				max="10" /></li>
-	<li><label for="dob">Date of Birth:<br /></label><input type="date" name="dob" /></li>
-	<li><label for="dod">Date of Death:<br /></label><input type="date" name="dod" /></li>
-	<li><label for="favorite">Mark As Favorite?:<br /></label><input type="checkbox" name="favorite" />Yes</li>	
+
+	<li><label for="history">Relative's History:<br /></label><textarea id="history">Family member history/events/important information.</textarea></li>
+	<li><label for="rating">Rating:<br /></label><input type="range" name="rating" id="rating" min="1" max="10" /></li>
+	<li><label for="dob">Date of Birth:<br /></label><input type="date" name="dob" id="dob"/></li>
+	<li><label for="dod">Date of Death:<br /></label><input type="date" name="dod" id="dod"/></li>
+	<li><label for="favorite">Mark As Favorite?:<br /></label><input type="checkbox" name="favorite" id="favorite"/>Yes</li>	
 	<!-- REQUIRED HIDDEN INPUT TYPE. -->
 	<li><input type="hidden" value="true" /></li>
-	</li>
 </ul>
-	</fieldset>
-</dv>
-
-	<fieldset>
+	<ul id="honors">
 	<legend>Military History</legend>
-<ul id="honors">
-	<li>Military Honors:
-<ul id="veteran">
 		<li><input type="checkbox" value="rwar" id="rwar" /><label for="rmethod">Revolutionary War</label></li>
 		<li><input type="checkbox" value="ww2" id="cwar" /><label for="cwar">Civil War</label></li>
 		<li><input type="checkbox" value="ww1" id="ww1" /><label for="rmethod">World War I</label></li>
 		<li><input type="checkbox" value="ww2" id="ww2" /><label for="rmethod">World War II</label></li>
-		<li><input type="checkbox" value="vietnam" id="vwar" /><label for="rmethod">Vietnam</label></li></ul>
-</ul>
+		<li><input type="checkbox" value="vietnam" id="vwar" /><label for="rmethod">Vietnam</label></li>
+	</ul>
 	</fieldset>
-<input type="button" value="Add Relative" id="submit" /><br />
+<input type="submit" value="Add Relative" id="submit" /><br />
 </form>
-<br /><br />
-<nav>
-<a href="#" id="clearData">Clear Heritage Tree</a><br />
-<a href="#" id="displayData">Display Heritage Tree</a><br />
-<a href="additem.html" id="addNew" style="display:none;">Add New Item</a>
-</nav>
+<br />
 <!-- Ref Javascript file(s) -->
+<script src="js/json.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>

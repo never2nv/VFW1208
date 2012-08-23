@@ -1,8 +1,8 @@
 /*
-Title: Style.css
+Title: Family Heritage Tree
 Author: Paul J. Miller
 VFW-1208
-Date: 08/14/2012
+Date: 08/22/2012
 Project 3: Heritage Tree
 */
 // If DOM is ready then proceed with rest of code
@@ -21,7 +21,7 @@ Project 3: Heritage Tree
 	function makeCats(){
 		// formTag = Array of all form tags available
 		var formTag = document.getElementsByTagName("form"),
-		selectLi = $('select'),
+		selectLi = $('relation'),
 		makeSelect = document.createElement('select');
 		makeSelect.setAttribute("id", "groups");
 		for(var i=0, j=relationCategory.length; i<j; i++){
@@ -48,14 +48,17 @@ Project 3: Heritage Tree
 		switch(n){
 			case "on":
 				$('mainInfo').style.display = "none";
+				$('form').style.display = "none";
+				$('honors').style.display = "none";
+				$('submit').style.display = "none";
 				$('clearData').style.display = "inline";
-				$('displayLink').style.display = "none";
+				$('displayData').style.display = "none";
 				$('addNew').style.display = "inline";
 				break;
 			case "off":
 				$('mainInfo').style.display = "block";
 				$('clearData').style.display = "inline";
-				$('displayLink').style.display = "inline";
+				$('displayData').style.display = "inline";
 				$('addNew').style.display = "none";
 				$('items').style.display = "none";
 				break;
@@ -100,7 +103,8 @@ Project 3: Heritage Tree
 	function getData(){
 	toggleControls("on");
 	if(localStorage.length === 0){
-		alert("There is no heritage data in storage!");
+		alert("There is no heritage data in storage so default data was loaded.");
+		autoFillData();
 	}
 		// Write data from local storage to browser.
 		var makeDiv = document.createElement('div');
@@ -116,8 +120,10 @@ Project 3: Heritage Tree
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			// JSON PARSE is opposite of stringify, parsing tunrs vlaue into an object!
+			var obj = JSON.parse(value);
 			var makeSubList = document.createElement('ul');
 			makeLi.appendChild(makeSubList);
+			getImage(obj.relation[1], makeSubList);
 			for (var n in obj){
 				var makeSubLi = document.createElement('li');
 				makeSubList.appendChild(makeSubLi);
@@ -126,6 +132,24 @@ Project 3: Heritage Tree
 				makeSubList.appendChild(linksLi);
 			}
 			makeItemLinks(localStorage.key(i), linksLi); // Create edit and delete buttons for (localStorage) data.
+		}
+	}
+	
+	// Get the image for correct category
+	function getImage(catName, makeSubList){
+		var imageLi = document.createElement('li');
+		makeSubList.appendChild(imageLi);
+		var newImg = document.createElement('img');
+		var setSrc = newImg.setAttribute("src", "Images/"+ catName + ".png");
+		imageLi.appendChild(newImg);
+	}
+	
+	// Auto populate localStorage (Yay! Finally!)
+	function autoFillData() {
+		// Imports the JSON file data into localStorage
+		for(var n in json) {
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
 		}
 	}
 	
@@ -194,21 +218,22 @@ Project 3: Heritage Tree
 		$('history').value = item.history[1];
 		$('rating').value = item.rating[1];
 		$('dob').value = item.dob[1];
+		$('dod').value = item.dod[1];
 		
 		// Remove initial savedata listener button.
 		save.removeEventListener("click", storeData);
-		// Change the initial submit button value to edit
-		$('submit').value = "Edit Relative";
-		var editRelative = $('submit');
-		// Save tracked key of this function as a property.
-		editRelative.addEventListener("click", validate);
-		editRelative.key = this.key;
+		// Change submit button value => edit
+		$('submit').value = "Edit Family Member";
+		var editFamily = $('submit');
+		// Save tracked key of this function as property of editFamily event. So it saves only values that have been edited.
+		editFamily.addEventListener("click", validate);
+		editFamily.key = this.key;
 	}
 	
 	// Delete single item from localStorage
-	function deleteItem(){
+	function deleteItem() {
 		var confirm = confirm("Are you sure you want to delete this relative? Press cancel to abort deletion.");
-		if(confirm){
+		if(confirm) {
 			localStorage.removeItem(this.key);
 			window.location.reload();
 			alert("Relative was deleted successfully!");
@@ -250,28 +275,28 @@ Project 3: Heritage Tree
 		var errorArray = [];
 		
 		// Relation Validation
-		if(getRelation=="--Choose A Family Relation--"){
+		if(getRelation === "--Choose A Family Relation--"){
 			var relationError = "Please choose a family relation!";
 			getRelation.style.border = "1px solid red";
 			errorArray.push(groupError);
 		}	
 		
 		// First Name validation
-		if(getFname==""){
+		if(getFname === ""){
 			var fNameError = "Please enter a first name!";
 			getRname.style.border = "1px solid red";
 			errorArray.push(fNameError);
 		}
 		
 		// Middle Name validation
-		if(getMname==""){
+		if(getMname === ""){
 			var mNameError = "Please enter a middle name or initial!";
 			getRname.style.border = "1px solid red";
 			errorArray.push(mNameError);
 		}
 		
 		// Last Name validation
-		if(getLname==""){
+		if(getLname === ""){
 			var lNameError = "Please enter a last name!";
 			getRname.style.border = "1px solid red";
 			errorArray.push(lNameError);
